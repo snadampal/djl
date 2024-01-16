@@ -25,7 +25,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Install NDK
-        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${NDK_VERSION}"
+        run: |
+          echo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${NDK_VERSION}"
+          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${NDK_VERSION}"
       - name: build android
         run: |
           export ANDROID_NDK=${ANDROID_SDK_ROOT}/ndk/${NDK_VERSION}
